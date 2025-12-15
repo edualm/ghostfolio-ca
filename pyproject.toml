@@ -1,0 +1,9 @@
+[project]
+name = "aforro-portfolio"
+version = "0.1.0"
+description = "Generate HTML reports for Portuguese Certificados de Aforro portfolio values"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "requests>=2.32.0",
+]
