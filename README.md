@@ -102,10 +102,21 @@ Fill in the asset details:
 Then configure the scraper:
 - **Locale:** US (due to the number format used)
 - **Mode:** Lazy (IGCP updates values daily)
-- **URL:** Path to your `out.html` file (can be a local file path or hosted URL, e.g., `file:///path/to/out.html` or a GitHub raw URL if you host it)
+- **URL:** URL where your `out.html` file is hosted (must be accessible by your Ghostfolio instance, e.g., `https://your-server.com/out.html`)
 - **Selector:** `#currentMarketPrice_value`
 
 Save the configuration.
+
+### Automation
+
+To keep your portfolio values up to date, set up a cron job to run the script daily and publish the output to a web server:
+
+```bash
+# Example cron job (run daily at 8 AM)
+0 8 * * * cd /path/to/ghostfolio-ca && /usr/local/bin/uv run generate.py && cp out.html /var/www/html/
+```
+
+Or use a simple web server like nginx or Apache to serve the `out.html` file, ensuring your Ghostfolio instance can access it.
 
 ### Using in Ghostfolio
 
