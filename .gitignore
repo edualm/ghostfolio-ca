@@ -15,7 +15,7 @@ build/
 *.egg-info/
 
 # Generated files
-out.html
+out/
 
 # Personal subscription data
 subscriptions.json

@@ -68,7 +68,7 @@ uv run generate.py
 This will:
 1. Fetch current values for all subscriptions from IGCP API
 2. Calculate total current value, invested value, and performance ratio
-3. Generate `out.html` with the results
+3. Generate `out/index.html` with the results
 
 ### Example Output
 
@@ -78,14 +78,14 @@ Fetching current values from IGCP API...
   [2/2] Fetching E - 206993329... ✓ 10 823,40 EUR
 
 Generating HTML report...
-Report generated: out.html
+Report generated: out/index.html
 
 Total current value: 43 387,20 EUR
 Total invested value: 40 000,00 EUR
 Ratio (current/invested): 1,08468
 ```
 
-The generated `out.html` contains a simple page with the performance ratio (current value divided by invested value) that can be scraped by Ghostfolio.
+The generated `out/index.html` contains a simple page with the performance ratio (current value divided by invested value) that can be scraped by Ghostfolio.
 
 ## Configuration for Ghostfolio
 
@@ -102,7 +102,7 @@ Fill in the asset details:
 Then configure the scraper:
 - **Locale:** US (due to the number format used)
 - **Mode:** Lazy (IGCP updates values daily)
-- **URL:** URL where your `out.html` file is hosted (must be accessible by your Ghostfolio instance, e.g., `https://your-server.com/out.html`)
+- **URL:** URL where your `out/index.html` file is hosted (must be accessible by your Ghostfolio instance, e.g., `https://your-server.com/ca/`)
 - **Selector:** `#currentMarketPrice_value`
 
 Save the configuration.
@@ -113,10 +113,10 @@ To keep your portfolio values up to date, set up a cron job to run the script da
 
 ```bash
 # Example cron job (run daily at 8 AM)
-0 8 * * * cd /path/to/ghostfolio-ca && /usr/local/bin/uv run generate.py && cp out.html /var/www/html/
+0 8 * * * cd /path/to/ghostfolio-ca && /usr/local/bin/uv run generate.py && rsync -av out/ /var/www/html/ca/
 ```
 
-Or use a simple web server like nginx or Apache to serve the `out.html` file, ensuring your Ghostfolio instance can access it.
+Or use a simple web server like nginx or Apache to serve the `out/` directory, ensuring your Ghostfolio instance can access it.
 
 ### Using in Ghostfolio
 

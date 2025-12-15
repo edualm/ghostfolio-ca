@@ -107,7 +107,7 @@ def format_number(value: float, decimals: int = 2) -> str:
     return f"{value:,.{decimals}f}"
 
 
-def generate_html_report(subscriptions: List[Subscription], output_file: str = "out.html"):
+def generate_html_report(subscriptions: List[Subscription], output_file: str = "out/index.html"):
     """Generate HTML report with subscription details."""
     
     # Calculate totals
@@ -135,6 +135,9 @@ body {{ font-family: Arial; font-size: 0.3cm }}
     </div>
 </body>
 </html>"""
+    
+    import os
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html)
