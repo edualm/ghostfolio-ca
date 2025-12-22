@@ -131,7 +131,7 @@ body {{ font-family: Arial; font-size: 0.3cm }}
     <h1>CA</h1>
     <div id="currentMarketPrice" class="container">
         <h2 class="title">Most Recent Value:</h2>
-        <h3 id="currentMarketPrice_value">{format_number(ratio, 5)}</h3>
+        <h3 id="currentMarketPrice_value">{format_number(ratio, 10)}</h3>
     </div>
 </body>
 </html>"""
@@ -213,7 +213,7 @@ def main():
     
     print(f"\nTotal current value: {format_number(total_current, 2)} EUR")
     print(f"Total invested value: {format_number(total_invested, 2)} EUR")
-    print(f"Ratio (current/invested): {format_number(ratio, 5)}")
+    print(f"Ratio (current/invested): {format_number(ratio, 10)}")
 
 
 if __name__ == "__main__":
